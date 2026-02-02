@@ -1,12 +1,19 @@
-import { logger } from "@vendetta";
-import Settings from "./Settings";
+import { findByProps } from "@vendetta/metro";
+import { instead } from "@vendetta/patcher";
+
+const IdleStore = findByProps("getIdleSince", "isIdle");
+
+let unpatchGetIdleSince;
+let unpatchIsIdle;
 
 export default {
     onLoad: () => {
-        logger.log("Hello world!");
+        if (!IdleStore) return;
+        unpatchGetIdleSince = instead("getIdleSince", IdleStore, () => 0);
+        unpatchIsIdle = instead("isIdle", IdleStore, () => false);
     },
     onUnload: () => {
-        logger.log("Goodbye, world.");
+        if (unpatchGetIdleSince) unpatchGetIdleSince();
+        if (unpatchIsIdle) unpatchIsIdle();
     },
-    settings: Settings,
-}
+};
