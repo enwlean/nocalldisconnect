@@ -3,17 +3,21 @@ import { instead } from "@vendetta/patcher";
 
 const IdleStore = findByProps("getIdleSince", "isIdle");
 
-let unpatchGetIdleSince;
-let unpatchIsIdle;
+let patches = [];
 
 export default {
     onLoad: () => {
         if (!IdleStore) return;
-        unpatchGetIdleSince = instead("getIdleSince", IdleStore, () => 0);
-        unpatchIsIdle = instead("isIdle", IdleStore, () => false);
+
+        // getIdleSince должен возвращать null, если вы активны
+        patches.push(instead("getIdleSince", IdleStore, () => null));
+        
+        // isIdle всегда должен возвращать false
+        patches.push(instead("isIdle", IdleStore, () => false));
     },
     onUnload: () => {
-        if (unpatchGetIdleSince) unpatchGetIdleSince();
-        if (unpatchIsIdle) unpatchIsIdle();
+        // Очищаем все патчи разом
+        patches.forEach(unpatch => unpatch());
+        patches = [];
     },
 };
