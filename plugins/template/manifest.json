@@ -1,14 +1,14 @@
 {
-    "name": "NoCallDisconnect",
-    "description": "Prevents Discord from automatically disconnecting you from a call after 3 minutes of inactivity.",
-    "authors": [
-        {
-            "name": "parodosnkiy",
-            "id": "533926670508228618"
-        }
-    ],
-    "main": "index.js",
-    "vendetta": {
-        "icon": "ic_call_ended"
+  "name": "SentiraAI Plugin",
+  "description": "Transcibe and summarize audio and video files using SentiraAI API",
+  "authors": [
+    {
+      "name": "Cossale",
+      "id": "164673069212893184"
     }
+  ],
+  "main": "src/index.ts",
+  "vendetta": {
+    "icon": "ic_badge_staff"
+  }
 }
