@@ -1,14 +1,14 @@
 {
-    "name": "Template Plugin",
-    "description": "A plugin for use as a template.",
+    "name": "NoCallDisconnect",
+    "description": "Prevents Discord from automatically disconnecting you from a call after 3 minutes of inactivity.",
     "authors": [
         {
-            "name": "You!",
-            "id": "YOUR_ID_HERE"
+            "name": "parodosnkiy",
+            "id": "533926670508228618"
         }
     ],
-    "main": "src/index.ts",
+    "main": "index.js",
     "vendetta": {
-        "icon": "ic_badge_staff"
+        "icon": "ic_call_ended"
     }
 }
